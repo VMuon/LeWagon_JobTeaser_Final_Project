@@ -1,0 +1,8 @@
+version: 2
+
+sources: 
+   - name: jobteaser_lewagon
+     tables:
+       - name: candidate_status_update_cleaned
+       - name: dim_schools_cleaned
+       - name: optin_cleaned
