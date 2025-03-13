@@ -1,0 +1,27 @@
+version: 2
+
+sources: 
+   - name: jobteaser_lewagon
+     tables:
+       - name : candidate_status_aggregated
+
+       - name : optin_aggregated
+       - name: candidate_status_update_cleaned
+         description: /
+       - name: dim_schools_cleaned
+         description: /
+       - name: optin_cleaned
+         description: contains all students opt-in/opt-out info. This is a toggle to activate saying that we are “looking for opportunities” and therefore agree to receive offers from companies via Shortlist product
+         columns:
+           - name: user_id
+             description: unique primary key for each user
+           - name: receive_time
+             description: /
+           - name: cause
+             description: manual, the student manually opt-in/out
+                          auto-no-answer, student doesn’t answer to a Shortlist, he is automatically opt-out 
+           - name: active
+             description: TRUE if it’s opt-in FALSE otherwise
+           - name: current_sign_in_at
+             description: last student connection date
+                          
