@@ -22,8 +22,4 @@ renamed as (
 
 )
 
-select 
-    cause, 
-    count(*) 
-from renamed
-group by cause
+select * from renamed
