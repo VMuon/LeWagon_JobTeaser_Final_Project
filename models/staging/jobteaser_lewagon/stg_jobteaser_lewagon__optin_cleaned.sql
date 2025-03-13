@@ -9,6 +9,7 @@ source as (
 renamed as (
 
     select
+        index,
         user_id,
         receive_time,
         cause,
@@ -21,4 +22,8 @@ renamed as (
 
 )
 
-select * from renamed
+select 
+    cause, 
+    count(*) 
+from renamed
+group by cause
