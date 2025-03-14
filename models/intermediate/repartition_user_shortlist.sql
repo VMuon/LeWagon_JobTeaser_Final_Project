@@ -20,7 +20,9 @@ SELECT
 FROM
   {{ ref('stg_jobteaser_lewagon__candidate_status_aggregated') }}
 )
+, 
 
+agg AS (
 SELECT 
   nb_users_in_shortlist, 
   count(distinct shortlist_id) as nb_shortlist,
@@ -28,3 +30,9 @@ SELECT
 FROM nb_users
 GROUP BY nb_users_in_shortlist
 ORDER BY nb_users_in_shortlist ASC
+)
+
+SELECT 
+    *, 
+    CASE WHEN nb_users_in_shortlist < 21 THEN CAST(nb_users_in_shortlist AS string) ELSE "20+" END AS shortlist_bucket
+FROM agg
