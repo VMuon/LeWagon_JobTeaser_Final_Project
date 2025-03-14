@@ -1,5 +1,6 @@
 SELECT 
-    candidate_status.*, 
+    candidate_status.*,
+    schools.school_id_master,
     schools.is_cc, 
     schools.intranet_school_id_clean,
     schools.jt_country,
