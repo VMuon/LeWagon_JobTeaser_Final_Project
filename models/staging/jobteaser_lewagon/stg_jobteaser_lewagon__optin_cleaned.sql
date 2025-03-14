@@ -9,6 +9,7 @@ source as (
 renamed as (
 
     select
+        index,
         user_id,
         receive_time,
         cause,
