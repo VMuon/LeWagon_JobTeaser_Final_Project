@@ -13,7 +13,7 @@ SELECT
     optin.last_current_sign_in_at as optin_last_current_sign_in_at,
     optin.last_resume_uploaded
 FROM {{ ref('stg_jobteaser_lewagon__candidate_status_aggregated') }} as candidate_status
-LEFT JOIN {{ ref('stg_jobteaser_lewagon__dim_schools_cleaned') }} as schools
+LEFT JOIN {{ ref('stg_jobteaser_lewagon_dim_schools_cc_lvl') }} as schools
 USING (school_id)
 LEFT JOIN {{ ref('stg_jobteaser_lewagon__optin_aggregated') }} as optin 
 USING (user_id)
