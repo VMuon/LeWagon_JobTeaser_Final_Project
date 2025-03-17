@@ -3,7 +3,7 @@
 --    SUM(CASE WHEN last_cause = "email-click" AND interested_date IS NOT NULL THEN 1 ELSE 0 END)/SUM(CASE WHEN last_cause = "email-click" THEN 1 ELSE 0 END) as interested_reponse_active_ratio,
 --    SUM(CASE WHEN last_cause = "email-click" AND not_interested_date IS NOT NULL THEN 1 ELSE 0 END)/SUM(CASE WHEN last_cause = "email-click" THEN 1 ELSE 0 END) as not_interested_reponse_active_ratio
 --FROM {{ ref('3_tables_joined') }}
-SELECT * FROM (
+WITH tab as  (
     SELECT 
     round(nb_optin/nb_distinct_candidates,2) as optin_ratio,
     round(nb_optin_qualified/nb_optin,2) as optin_to_optin_qualified,
@@ -17,8 +17,19 @@ SELECT * FROM (
 
 FROM {{ ref('join_optin_shortlist') }}
 )
-PIVOT 
-(
-    MAX(optin_ratio)
 
-)
+SELECT metric, value
+FROM tab
+UNPIVOT (
+    value FOR metric IN (
+        optin_ratio,
+        optin_to_optin_qualified,
+        qualified_to_shortlisted,
+        shortlist_answers_rate,
+        interested_rate,
+        not_interested_rate,
+        company_answers_rate_from_interested,
+        approved_from_company_answers,
+        declined_from_company_answers
+    )
+) AS unpvt
