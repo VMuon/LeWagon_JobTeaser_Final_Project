@@ -1,3 +1,5 @@
+{{config(materialized="table")}}
+
 SELECT 
     candidate_status.*,
     schools.school_id_master,
