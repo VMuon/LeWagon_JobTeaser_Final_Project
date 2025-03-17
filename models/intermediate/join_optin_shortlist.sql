@@ -12,8 +12,8 @@ with
     )
 
 select
-    sum(case when last_opt_status = true and last_resume_uploaded = true then 1 else 0 end) / sum(case when last_opt_status = true then 1 else 0 end) as optin_qualified_ratio,
+    round(sum(case when last_opt_status = true and last_resume_uploaded = true then 1 else 0 end) / sum(case when last_opt_status = true then 1 else 0 end),2) as optin_qualified_ratio,
     round(count(shortlist_id) / count(*), 2) as optin_to_shortlist_ratio,
-    count(shortlist_id) / sum(case when last_opt_status = true and last_resume_uploaded = true then 1 else 0 end) as optin_qualified_to_shortlist_ratio
+    round(count(shortlist_id) / sum(case when last_opt_status = true and last_resume_uploaded = true then 1 else 0 end),2) as optin_qualified_to_shortlist_ratio
 
 from optin_shortlist
