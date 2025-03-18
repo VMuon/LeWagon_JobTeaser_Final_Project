@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+{{config(materialized="table")}}
+=======
+
+>>>>>>> 151735174f90d1de0b0c60eed6cc40291eb3d9df
+
 SELECT 
     candidate_status.*,
     schools.school_id_master,
